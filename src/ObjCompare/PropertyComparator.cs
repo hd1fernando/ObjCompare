@@ -1,19 +1,20 @@
-﻿using System;
-
-namespace ObjCompare
+﻿namespace ObjCompare
 {
     public class PropertyComparator : IComparator
     {
-        IComparator _leftObject;
-        IComparator _rightObject;
+        public IComparator LeftObject;
+        public IComparator RightObject;
 
         public PropertyComparator(IComparator leftObject, IComparator rightObject)
         {
-            _leftObject = leftObject;
-            _rightObject = rightObject;
+            LeftObject = leftObject;
+            RightObject = rightObject;
         }
 
+        public string Accept(IVisitor visitor)
+            => visitor.Print(this);
+
         public object Validade()
-            => (bool)_leftObject.Validade().Equals(_rightObject.Validade());
+            => LeftObject.Validade().Equals(RightObject.Validade());
     }
 }

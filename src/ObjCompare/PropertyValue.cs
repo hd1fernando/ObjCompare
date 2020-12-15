@@ -13,7 +13,12 @@ namespace ObjCompare
             _object = @object;
         }
 
+        public string Accept(IVisitor visitor)
+            => _propertyInfo.Name;
+
         public object Validade()
             => _propertyInfo.GetValue(_object);
     }
+
+
 }
