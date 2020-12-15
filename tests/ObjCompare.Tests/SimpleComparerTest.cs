@@ -18,6 +18,7 @@ namespace ObjCompare.Tests
 
 
         [Fact(DisplayName = "Should compare an object with only one property")]
+        [Trait("Unit", "Simple Comparer")]
         public void ShouldCompareAnObjectWithOnlyOneProperty()
         {
             // Arrange
@@ -32,7 +33,9 @@ namespace ObjCompare.Tests
             result.Should().BeEquivalentTo($"Value:10,20;");
         }
 
-        [Fact(DisplayName = "")]
+        [Fact(DisplayName = "Shoud return empty when no change happen")]
+        [Trait("Unit", "Simple Comparer")]
+
         public void ShoudReturnEmptyWhenNoChangeHappen()
         {
             // Arrange
@@ -48,6 +51,7 @@ namespace ObjCompare.Tests
         }
 
         [Fact(DisplayName = "Should throw an exception when the object is a different type")]
+        [Trait("Unit", "Simple Comparer")]
         public void ShouldThrowAnExceptionWhenTheObjectIsADifferentType()
         {
             // Arrange

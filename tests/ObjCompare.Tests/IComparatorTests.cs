@@ -10,9 +10,10 @@ namespace ObjCompare.Tests
             public object Value { get; set; }
         }
 
-        [Theory(DisplayName = "")]
+        [Theory(DisplayName = "PropertyValue - Should return PropertyValue")]
         [InlineData("string")]
         [InlineData(10)]
+        [Trait("Unit", "PropertyValue")]
         public void PropertyValue_ShouldReturnPropertyValue(object value)
         {
             // Arrange
@@ -26,8 +27,24 @@ namespace ObjCompare.Tests
             result.Should().Be(value);
         }
 
-        [Theory(DisplayName = "")]
+        [Fact(DisplayName = "PropertyName - Shoul return PropertyName")]
+        [Trait("Unit", "PropertyName")]
+        public void PropertyName_ShoulReturnPropertyName()
+        {
+            // Arrange
+            FakeClasse fake = new() { Value = string.Empty };
+            IComparator comparator = new PropertyName(fake.GetType().GetProperty(nameof(fake.Value)), fake);
+
+            // Act
+            var result = comparator.Validade();
+
+            // Assert
+            result.Should().Be(nameof(fake.Value));
+        }
+
+        [Theory(DisplayName = "PropertyComparator - Should return false when compare two properties values")]
         [InlineData("vader")]
+        [Trait("Unit", "PropertyComparator")]
         public void PropertyComparator_ShouldReturnFalseWhenCompareTwoPropertiesValues(object expectedValue)
         {
             // Arrange
@@ -46,8 +63,9 @@ namespace ObjCompare.Tests
             result.Should().BeFalse();
         }
 
-        [Theory(DisplayName = "")]
+        [Theory(DisplayName = "PropertyComparator - Should return true when compare two properties values")]
         [InlineData("vader")]
+        [Trait("Unit", "PropertyComparator")]
         public void PropertyComparator_ShouldReturnTrueWhenCompareTwoPropertiesValues(object expectedValue)
         {
             // Arrange
