@@ -12,6 +12,7 @@ namespace ObjCompare
             if (IsTheSameType(oldObject, newObject) is false)
                 throw new Exception();
 
+
             StringBuilder result = new();
 
             (var oldProperties, var newProperties) = GetAllProperties(oldObject, newObject);
